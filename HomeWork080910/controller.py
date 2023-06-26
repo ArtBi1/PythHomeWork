@@ -11,7 +11,8 @@ def start():
                 model.open_file()
                 print_message(text.open_successful)
             case 2:
-                pass
+                model.save_contacts_to_file() # Сохранить контакты в файл
+                print_message(text.save_completed) # Вывести сообщение об успехе
             case 3:
                 show_contacts(model.phone_book)
             case 4:
@@ -33,8 +34,8 @@ def start():
                 print_message(text.contact_changed(new.get('name') if new.get('name') else old_name))
 
             case 7:
-                index = input_return(text.input_index)
-                model.delete_contact(int(index))
-                print_message(text.contact_deleted)
+                index = input_return(text.input_index) # Вызов текста input_index и получает ввод в перем. index
+                model.delete_contact(int(index)) # из модуля model.py вызов функции delete_contact
+                print_message(text.contact_deleted) # Из текст.ру принтует текст contact_deleted
             case 8:
                 break

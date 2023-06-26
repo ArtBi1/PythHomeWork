@@ -44,3 +44,15 @@ def delete_contact(index: int): # Функция удаления контакт
             contact['id'] = i + 1 # обновляет индексы контактов в списке пхоне_бук (ставится ай+1)
 
 
+def save_contacts_to_file():
+    file_path = 'phones.txt'  # муть к файлу, в который будут сохранены контакты, в моем случае без директории
+    lines = [] # пустой список для хранения строк контактов
+    for contact in phone_book:
+        # vvv vvv vvv Строка с помощью джойна форматом (id:имя:телефон:комментарий) vvvv vvvv vvvv
+        contact_data = ":".join([str(contact['id']), contact['name'], contact['phone'], contact['comment']])
+        lines.append(contact_data)
+
+    contacts_data = '\n'.join(lines)  # список строк в одну, разделение их символами новой строки
+
+    with open(file_path, 'w', encoding='UTF-8') as file: # открыть записью 'w' с кодировкой утф-8
+        file.write(contacts_data) # записать
